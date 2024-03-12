@@ -1,5 +1,5 @@
 % hw3.pl
-% ADD YOUR NAME HERE
+% Nicholas McCarty
 
 % ------------------------------------------------
 % #1 (Undergraduate/Graduate) (5/5 pts)
@@ -15,7 +15,11 @@ maxnums(A, B, B) :- A < B.
 % #2 (Undergraduate/Graduate) (5/5 pts)
 % Determine the summation of a list of integer numbers
 % sum(LST, SUM).
+sum([], 0).
 
+sum([H|T], Sum) :-
+  sum(T, TailSum),
+  Sum is H + TailSum.
 
 % sum([1, 2, 3, 4], SUM). -> SUM = 10
 % sum([10, -10], SUM). -> SUM = 0
@@ -176,7 +180,6 @@ maxnums(A, B, B) :- A < B.
 % adjectives: yellow, big, brown, green, party
 % plural verbs: shine, continue, party, eat
 % singular verbs: shines, continues, parties, eats
-
 
 % sentence([the, party, bus, shines, brightly]). -> true.
 % sentence([the, big, party, continues]). -> true.
