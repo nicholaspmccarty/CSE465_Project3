@@ -81,6 +81,14 @@ elementExist(E, [_|T]) :- elementExist(E, T).
 % Determine the reverse list of integer numbers
 % reverse(LST, REVLST).
 
+% base case
+reverse([], []).
+
+% if base case fails, start recursion.
+reverse([H|T], Reversed) :-
+    reverse(T, SecondList),
+    append(SecondList, [H], Reversed).
+
 
 
 
@@ -93,6 +101,16 @@ elementExist(E, [_|T]) :- elementExist(E, T).
 % Determine the list of integer numbers that are only one digit numbers
 % collectOneDigits(LST, NEWLST). 
 
+collectOneDigits([], []).
+collectOneDigits([H|T], [H |Newlist]) :-
+ between(-9, 9, H),
+  collectOneDigits(T, Newlist).
+
+% This recursive second method is stolen from chatgpt.
+collectOneDigits([H|T], Result) :-
+    \+ between(-9, 9, H),  % This checks if H is NOT a one-digit number.
+    collectOneDigits(T, Result).
+     
 
 % collectOneDigits([10, 90, -20], NEWLST). -> NEWLST = []
 % collectOneDigits([], NEWLST). -> NEWLST = []
