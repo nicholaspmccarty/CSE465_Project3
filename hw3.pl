@@ -68,6 +68,9 @@ max([H|T], Max) :-
 % Determine whether the given integer number does exist in the given 
 % list of integer numbers
 % elementExist(E, LST).
+elementExist(E, [E|_]).
+
+elementExist(E, [_|T]) :- elementExist(E, T).
 
 
 % elementExist(1, [1, 2, 3]). -> true.
@@ -77,6 +80,8 @@ max([H|T], Max) :-
 % #6 (Undergraduate/Graduate) (5/5 pts)
 % Determine the reverse list of integer numbers
 % reverse(LST, REVLST).
+
+
 
 
 % reverse([], REVLST). -> REVLST = []
