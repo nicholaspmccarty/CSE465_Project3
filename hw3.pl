@@ -128,6 +128,9 @@ collectOneDigits([H|T], Result) :-
 % Determine all places based on given state and zipcode.
 % getStateInfo(PLACE, STATE< ZIPCODE).
 
+getStateInfo(Place, State, Zipcode) :-
+    location(Zipcode, Place, State, _, _, _).
+
 
 % getStateInfo('Oxford', State, 45056). -> State = 'OH'
 % getStateInfo('Oxford', State, _). -> 
@@ -173,6 +176,12 @@ collectOneDigits([H|T], Result) :-
 %    practice. 
 % getCcommon(STATE1, STATE2, PLACELST).
 
+% I used ChatGPT for this method.
+getCommon(STATE1, STATE2, PLACELST) :-
+    setof(Place, Zip^Loc^Lat^Long^(
+        location(Zip, Place, STATE1, Loc, Lat, Long),
+        location(_, Place, STATE2, _, _, _)
+    ), PLACELST).
 
 % getCommon('OH','MI',PLACELST). -> *Should be 131 unique plcase* 
 % ['Manchester','Unionville','Athens','Saint
