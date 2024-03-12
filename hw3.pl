@@ -15,9 +15,14 @@ maxnums(A, B, B) :- A < B.
 % #2 (Undergraduate/Graduate) (5/5 pts)
 % Determine the summation of a list of integer numbers
 % sum(LST, SUM).
+
+% base case, if empty, return 0
 sum([], 0).
 
+% we are splitting the list with a head and tail, and will
+% eventually recursively return sum.
 sum([H|T], Sum) :-
+% calling T, and returning tailsum. this will repeatedly work until sum is empty.
   sum(T, TailSum),
   Sum is H + TailSum.
 
@@ -31,6 +36,13 @@ sum([H|T], Sum) :-
 %    as part of your solution.
 % ** You can always assume that the given LST is not empty. 
 % max(LST, MAX).
+
+% base case, for a single element list, we will return this single element.
+max([X], X).
+
+max([H|T], Max) :-
+   max(T, SecondMax),
+      maxnums(H, SecondMax, Max).
 
 
 % max([-5, -5, -5], MAX). -> MAX = -5
@@ -180,6 +192,7 @@ sum([H|T], Sum) :-
 % adjectives: yellow, big, brown, green, party
 % plural verbs: shine, continue, party, eat
 % singular verbs: shines, continues, parties, eats
+
 
 % sentence([the, party, bus, shines, brightly]). -> true.
 % sentence([the, big, party, continues]). -> true.
