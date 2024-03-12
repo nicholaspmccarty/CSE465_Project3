@@ -56,7 +56,10 @@ max([H|T], Max) :-
 %    as part of your solution.
 % ** You can always assume that the given LST is not empty. 
 % partitionable(LST).
-
+% This method was stolen from chatgpt.
+partitionable(LST) :-
+    sum(LST, TotalSum),
+    0 is TotalSum mod 2.
  
 % partitionable([1, 2, 3, 4, 10]). -> true. because [10, 10]
 % partitionable([2, 1, 1]). -> true. because [2, 2]
